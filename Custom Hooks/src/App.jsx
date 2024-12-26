@@ -33,6 +33,10 @@ function App() {
    }
 
    async function handleSelectPlace(selectedPlace) {
+      const existingPlace = userPlaces.find(
+         (place) => place.id === selectedPlace.id
+      );
+      if (existingPlace) return;
       // await updateUserPlaces([selectedPlace, ...userPlaces]);
 
       setUserPlaces((prevPickedPlaces) => {
