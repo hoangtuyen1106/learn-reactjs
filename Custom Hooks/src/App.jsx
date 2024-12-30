@@ -32,32 +32,46 @@ function App() {
       setModalIsOpen(false);
    }
 
-   async function handleSelectPlace(selectedPlace) {
-      const existingPlace = userPlaces.find(
-         (place) => place.id === selectedPlace.id
-      );
-      if (existingPlace) return;
-      // await updateUserPlaces([selectedPlace, ...userPlaces]);
+   // async function handleSelectPlace(selectedPlace) {
+   //    const existingPlace = userPlaces.find(
+   //       (place) => place.id === selectedPlace.id
+   //    );
+   //    if (existingPlace) return;
+   //    // await updateUserPlaces([selectedPlace, ...userPlaces]);
 
-      setUserPlaces((prevPickedPlaces) => {
-         if (!prevPickedPlaces) {
-            prevPickedPlaces = [];
-         }
-         if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
-            return prevPickedPlaces;
-         }
-         return [selectedPlace, ...prevPickedPlaces];
-      });
+   //    setUserPlaces((prevPickedPlaces) => {
+   //       if (!prevPickedPlaces) {
+   //          prevPickedPlaces = [];
+   //       }
+   //       if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+   //          return prevPickedPlaces;
+   //       }
+   //       return [selectedPlace, ...prevPickedPlaces];
+   //    });
 
+   //    try {
+   //       await updateUserPlaces([selectedPlace, ...userPlaces]);
+   //    } catch (error) {
+   //       setUserPlaces(userPlaces);
+   //       setErrorUpdatingPlaces({
+   //          message: error.message || "Failed to update places.",
+   //       });
+   //    }
+   // }
+
+   const handleSelectPlace = async (selectedPlace) => {
+      const updatedPlaces = [selectedPlace, ...userPlaces.filter((place) => place.id !== selectedPlace.id)];
+      setUserPlaces(updatedPlaces);
+    
       try {
-         await updateUserPlaces([selectedPlace, ...userPlaces]);
+        await updateUserPlaces(updatedPlaces);
       } catch (error) {
-         setUserPlaces(userPlaces);
-         setErrorUpdatingPlaces({
-            message: error.message || "Failed to update places.",
-         });
+        setUserPlaces(userPlaces); // Revert changes on error
+        setErrorUpdatingPlaces({
+          message: error.message || "Failed to update places.",
+        });
       }
-   }
+    };
 
    const handleRemovePlace = useCallback(
       async function handleRemovePlace() {
