@@ -1,98 +1,63 @@
-import { useState } from "react";
+import Input from "./Input.jsx";
+import { isEmail, isNotEmpty, hasMinLength } from "../util/validation.js";
+import { useInput } from "../hooks/useInput.js";
 
 export default function Login() {
-   // const [enteredEmail, setEnterrdEmail] = useState('');
-   // const [enteredPassword, setEnterrdPassword] = useState('');
+  const {
+    value: emailValue,
+    handleInputChange: handleEmailChange,
+    handleInputBlur: handleEmailBlur,
+    hasError: emailHasError,
+  } = useInput("", (value) => isEmail(value) && isNotEmpty(value));
 
-   const [enteredValues, setEnteredValues] = useState({
-      email: "",
-      password: "",
-   });
+  const {
+    value: passwordValue,
+    handleInputChange: handlePasswordChange,
+    handleInputBlur: handlePasswordBlur,
+    hasError: passwordHasError,
+  } = useInput("", (value) => hasMinLength(value, 6));
 
-   const [didEdit, setDidEdit] = useState({
-      email: false,
-      password: false,
-   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-   const emailIsInvalid =
-      didEdit.email && !enteredValues.email.includes("@");
+    if (emailHasError || passwordHasError) {
+      return;
+    }
+    console.log(emailValue, passwordValue);
+  };
 
-   const handleSubmit = (e) => {
-      e.preventDefault();
-      console.log(enteredValues);
+  return (
+    <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
 
-      // setEnteredValues({
-      //    email: "",
-      //    password: "",
-      // });
-   };
+      <div className="control-row">
+        <Input
+          label="Email"
+          id="email"
+          type="email"
+          name="email"
+          onBlur={handleEmailBlur}
+          onChange={handleEmailChange}
+          value={emailValue}
+          error={emailHasError && "Please enter a valid email!"}
+        />
 
-   const handleInputChange = (identifier, value) => {
-      setEnteredValues((preValues) => ({
-         ...preValues,
-         [identifier]: value,
-      }));
-      setDidEdit((prevEdit) => ({
-         ...prevEdit,
-         [identifier]: false,
-      }));
-   };
+        <Input
+          label="Password"
+          id="password"
+          type="password"
+          name="password"
+          onBlur={handlePasswordBlur}
+          onChange={handlePasswordChange}
+          value={passwordValue}
+          error={passwordHasError && "Please enter a valid password!"}
+        />
+      </div>
 
-   const handleInputBlur = (identifier) => {
-      setDidEdit((prevEdit) => ({
-         ...prevEdit,
-         [identifier]: true,
-      }));
-   };
-
-   // const handleEmailChange = (e) => {
-   //    setEnterrdEmail(e.target.value);
-   // };
-
-   // const handlePasswordChange = (e) => {
-   //    setEnterrdPassword(e.target.value);
-   // };
-
-   return (
-      <form onSubmit={handleSubmit}>
-         <h2>Login</h2>
-
-         <div className="control-row">
-            <div className="control no-margin">
-               <label htmlFor="email">Email</label>
-               <input
-                  id="email"
-                  type="email"
-                  name="email"
-                  onBlur={() => handleInputBlur("email")}
-                  onChange={(event) =>
-                     handleInputChange("email", event.target.value)
-                  }
-                  value={enteredValues.email}
-               />
-               <div className="control-error">
-                  {emailIsInvalid && <p>Please enter a valid email address.</p>}
-               </div>
-            </div>
-
-            <div className="control no-margin">
-               <label htmlFor="password">Password</label>
-               <input
-                  id="password"
-                  type="password"
-                  name="password"
-                  onChange={(event) =>
-                     handleInputChange("password", event.target.value)
-                  }
-                  value={enteredValues.password}
-               />
-            </div>
-         </div>
-
-         <p className="form-actions">
-            <button className="button button-flat">Reset</button>
-            <button className="button">Login</button>
-         </p>
-      </form>
-   );
+      <p className="form-actions">
+        <button className="button button-flat">Reset</button>
+        <button className="button">Login</button>
+      </p>
+    </form>
+  );
 }
