@@ -38,4 +38,5 @@ export const CartContextProvider = ({ children }) => {
   useReducer(cartReducer, { item: [] });
   return <CartContext.Provider>{children}</CartContext.Provider>;
 };
+
 export default CartContext;
