@@ -9,9 +9,6 @@ export default function MealItem({ meal }) {
    const handleAddMealToCart = () => {
       cartCtx.addItem(meal);
    };
-
-
-
    return (
       <li className="meal-item">
          <img src={`http://localhost:3000/${meal.image}`} alt={meal.name} />
