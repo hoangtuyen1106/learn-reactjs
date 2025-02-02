@@ -1,12 +1,1 @@
-{
-  "events": [
-    {
-      "title": "A new event",
-      "image": "https://cdn.muenchen-p.de/fl_progressive,q_65/.imaging/stk/responsive/teaser300/dms/va-2016/muenchner-christkindlmarkt/christkindlmarkt-marienplat-logo-hp/document/christkindlmarkt-marienplat-logo-hp.jpg",
-      "date": "2022-10-01",
-      "description": "Some awesome event!",
-      "id": "2a42fcc4-ea21-4bdd-abf6-c40006dc66a9"
-    }
-  ],
-  "users": []
-}
+{"events":[{"title":"yrdy","image":"https://blog.topcv.vn/wp-content/uploads/2021/07/sk2uEvents_Page_Header_2903ed9c-40c1-4f6c-9a69-70bb8415295b.jpg","date":"2025-02-12","description":"yyyy","id":"173ebc80-32fa-4ed0-80a8-2c07c516c9d5"}],"users":[{"email":"tuyen@gmail.com","password":"$2a$12$vt.R7jcPoQqsk/kPnV8lGuTjpvLR6aG8i0N6ajsaXtczIRym9ZgEm","id":"a3af6e96-b5ec-44ef-b1da-56c05794d063"},{"email":"test1@gmail.com","password":"$2a$12$MEpplq7/tSRvetOtGHx5w.sPjDtuCNft0zeJ4qL4Et02MhTXPyiAu","id":"3e303b40-c390-4e46-b22b-7398b205fabb"},{"email":"tew@gmail.com","password":"$2a$12$OJYITQVetG1sBQ3gMzku7uXPTxk2rkAYDVmy4rzsDJ87MnKkKx4BS","id":"62781a86-8cc0-4a19-b1d8-8dd7e0c97d78"},{"email":"tuyennh@gmail.com","password":"$2a$12$lUdxTC6SoBgQXMF1L3EVAOYu29u4korceNSe8syar0J2pYUf3BdCO","id":"35bfdf30-5fa6-4dd2-ab6f-04145404184c"}]}
