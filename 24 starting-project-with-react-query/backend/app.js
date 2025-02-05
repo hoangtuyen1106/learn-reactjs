@@ -69,9 +69,7 @@ app.get('/events/:id', async (req, res) => {
       .json({ message: `For the id ${id}, no event could be found.` });
   }
 
-  setTimeout(() => {
-    res.json({ event });
-  }, 1000);
+  res.json({ event });
 });
 
 app.post('/events', async (req, res) => {
