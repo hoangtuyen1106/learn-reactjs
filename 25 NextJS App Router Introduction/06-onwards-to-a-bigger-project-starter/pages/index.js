@@ -1,8 +1,17 @@
 import { MongoClient } from "mongodb";
 import MeetupList from "../components/meetups/MeetupList";
+import Head from "next/head";
 
 function HomePage(props) {
-    return <MeetupList meetups={props.meetups} />;
+    return (
+        <>
+            <Head>
+                <title>aaaaaaa</title>
+                <meta name="description" content="browse a huge" />
+            </Head>
+            <MeetupList meetups={props.meetups} />
+        </>
+    );
 }
 
 // export async function getServerSideProps(context) {
@@ -28,14 +37,14 @@ export async function getStaticProps() {
 
     return {
         props: {
-            meetups: meetups.map(meetup => ({
+            meetups: meetups.map((meetup) => ({
                 title: meetup.title,
                 address: meetup.address,
                 image: meetup.image,
-                id: meetup._id.toString()
+                id: meetup._id.toString(),
             })),
         },
-        revalidate: 10
+        revalidate: 10,
     };
 }
 
