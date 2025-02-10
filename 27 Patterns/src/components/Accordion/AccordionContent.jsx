@@ -1,6 +1,9 @@
 import { useAccordionContext } from "./Accordion.jsx";
-export default function AccordionContent({ id, className, children }) {
+import { useAccordionItemContext } from "./AccordionItem.jsx";
+
+export default function AccordionContent({ className, children }) {
     const { openItemId, toggleItem } = useAccordionContext();
+    const id = useAccordionItemContext();
     const isOpen = openItemId === id;
     return (
         <div className={isOpen ? `${className ?? ""} open` : `${className ?? ""} close`}>
